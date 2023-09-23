@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { IProps } from './Animation';
+import { IProps } from './Gestures';
 
 const boxVars = {
   start: { opacity: 0, scale: 0.5 },
@@ -19,42 +19,21 @@ const circleVars = {
   end: { opacity: 1, y: 0 },
 };
 
-const Varients = ({ background }: IProps) => {
+const Varients = ({ text }: IProps) => {
   return (
-    <Container background={background}>
+    <>
       <Box variants={boxVars} initial='start' animate='end'>
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
       </Box>
-      <p>Variants</p>
-    </Container>
+      <p>{text}</p>
+    </>
   );
 };
 
 export default Varients;
-
-const Container = styled.div<{ background: string }>`
-  position: relative;
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: ${(props) => props.background};
-  border-radius: 10px;
-
-  p {
-    position: absolute;
-    bottom: 10px;
-    left: 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-  }
-`;
 
 const Box = styled(motion.div)`
   display: grid;

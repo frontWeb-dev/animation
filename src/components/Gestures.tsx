@@ -1,21 +1,24 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { IProps } from './Gestures';
 
-const Animation = ({ text }: IProps) => {
+export interface IProps {
+  text: string;
+}
+
+const vars = {
+  hover: { scale: 1.2, rotateZ: 90 },
+  click: { scale: 1, borderRadius: '100px' },
+};
+const Gestures = ({ text }: IProps) => {
   return (
     <>
-      <Box
-        initial={{ scale: 0 }}
-        animate={{ scale: 1, rotateZ: 180 }}
-        transition={{ type: 'spring', bounce: 0.5 }}
-      />
+      <Box variants={vars} whileHover='hover' whileTap='click' />
       <p>{text}</p>
     </>
   );
 };
 
-export default Animation;
+export default Gestures;
 
 const Box = styled(motion.div)`
   width: 150px;
