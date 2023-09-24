@@ -1,12 +1,19 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import styled from 'styled-components';
 import { IProps } from './Gestures';
 
 const Drag = ({ text }: IProps) => {
+  const x = useMotionValue(0);
+  const color = useTransform(
+    x,
+    [-100, 100],
+    ['linear-gradient(135deg, #d801ef, #b50af8)', 'linear-gradient(135deg, #e09, #d0e)']
+  );
+
   return (
     <>
-      <Box>
-        <SBox drag dragSnapToOrigin={true} whileDrag={{ scale: 0.8 }} />
+      <Box style={{ background: color }}>
+        <SBox style={{ x }} drag dragSnapToOrigin whileDrag={{ scale: 0.8 }} />
       </Box>
       <p>{text}</p>
     </>

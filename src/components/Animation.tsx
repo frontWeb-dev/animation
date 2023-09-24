@@ -10,7 +10,10 @@ const Animation = ({ text }: IProps) => {
         animate={{ scale: 1, rotateZ: 180 }}
         transition={{ type: 'spring', bounce: 0.5 }}
       />
-      <p>{text}</p>
+
+      <div>
+        <p>{text}</p>
+      </div>
     </>
   );
 };

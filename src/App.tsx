@@ -3,6 +3,7 @@ import Animation from './components/Animation';
 import Varients from './components/Varients';
 import Gestures from './components/Gestures';
 import Drag from './components/Drag';
+import Scroll from './components/Scroll';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
       <Container background={'#5b00ff'}>
         <Drag text='Drag' />
       </Container>
+
+      <Container background={'#2328ff'}>
+        <Scroll text='Scroll' />
+      </Container>
     </Wrapper>
   );
 }
@@ -29,14 +34,14 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  max-width: 1300px;
+  margin: 0 auto;
+  height: 200vh;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   align-content: center;
-  background-color: #282828;
 `;
 
 const Container = styled.div<{ background: string }>`
