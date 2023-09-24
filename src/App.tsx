@@ -4,6 +4,7 @@ import Varients from './components/Varients';
 import Gestures from './components/Gestures';
 import Drag from './components/Drag';
 import Scroll from './components/Scroll';
+import Path from './components/Path';
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
 
       <Container background={'#2328ff'}>
         <Scroll text='Scroll' />
+      </Container>
+
+      <Container background={'linear-gradient(135deg, #005bff, #0095ff)'}>
+        <Path text='Path' />
       </Container>
     </Wrapper>
   );
