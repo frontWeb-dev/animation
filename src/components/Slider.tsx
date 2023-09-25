@@ -4,45 +4,56 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 const boxVars = {
-  initial: {
-    x: 500,
+  entry: (isBack: boolean) => ({
+    x: isBack ? -200 : 200,
     opacity: 0,
     scale: 0,
-  },
-  visible: {
+    transition: { duration: 0.3 },
+  }),
+  center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.2 },
   },
-  exit: {
-    x: -500,
+  exit: (isBack: boolean) => ({
+    x: isBack ? 200 : -200,
     opacity: 0,
     scale: 0,
-  },
+    transition: { duration: 0.3 },
+  }),
 };
+
 const Slider = ({ text }: IProps) => {
   const [visible, setVisible] = useState(1);
-  const prev = () => setVisible((prev) => (prev === 0 ? 0 : prev - 1));
-  const next = () => setVisible((prev) => (prev === 10 ? 10 : prev + 1));
+  const [isBack, setIsBack] = useState(false);
+  const prev = () => {
+    setIsBack(true);
+    setVisible((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+  const next = () => {
+    setIsBack(false);
+    setVisible((prev) => (prev === 10 ? 10 : prev + 1));
+  };
 
   return (
     <>
-      <AnimatePresence>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-          (i) =>
-            i === visible && (
-              <Box variants={boxVars} initial='initial' animate='visible' exit='exit' key={i}>
-                {i}
-              </Box>
-            )
-        )}
+      <AnimatePresence mode='wait' custom={isBack}>
+        <Box
+          custom={isBack}
+          variants={boxVars}
+          initial='entry'
+          animate='center'
+          exit='exit'
+          key={visible}>
+          {visible}
+        </Box>
       </AnimatePresence>
-      <p>{text}</p>
       <Buttons>
         <button onClick={prev}>Prev</button>
         <button onClick={next}>Next</button>
       </Buttons>
+      <p>{text}</p>
     </>
   );
 };
@@ -63,9 +74,10 @@ const Box = styled(motion.div)`
 
 const Buttons = styled.div`
   position: absolute;
-  right: 20px;
-  bottom: 25px;
-
+  bottom: 70px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
   button {
     margin-right: 10px;
     padding: 10px 20px;
