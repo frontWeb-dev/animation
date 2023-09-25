@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import { IProps } from './Gestures';
+import { useState } from 'react';
 
 const boxVars = {
   start: { opacity: 0, scale: 0.5 },
@@ -20,15 +21,23 @@ const circleVars = {
 };
 
 const Varients = ({ text }: IProps) => {
+  const [show, setShow] = useState(false);
+  const toggleShow = () => setShow((prev) => !prev);
+
   return (
     <>
-      <Box variants={boxVars} initial='start' animate='end'>
-        <Circle variants={circleVars} />
-        <Circle variants={circleVars} />
-        <Circle variants={circleVars} />
-        <Circle variants={circleVars} />
-      </Box>
+      <AnimatePresence>
+        {show && (
+          <Box variants={boxVars} initial='start' animate='end'>
+            <Circle variants={circleVars} />
+            <Circle variants={circleVars} />
+            <Circle variants={circleVars} />
+            <Circle variants={circleVars} />
+          </Box>
+        )}
+      </AnimatePresence>
       <p>{text}</p>
+      <Button onClick={toggleShow}>Click</Button>
     </>
   );
 };
@@ -52,4 +61,15 @@ const Circle = styled(motion.div)`
   border-radius: 100%;
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`;
+
+const Button = styled.button`
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
 `;

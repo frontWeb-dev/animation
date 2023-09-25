@@ -41,7 +41,7 @@ export default App;
 const Wrapper = styled.div`
   max-width: 1300px;
   margin: 0 auto;
-  height: 200vh;
+  height: 150vh;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
