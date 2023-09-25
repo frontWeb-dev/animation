@@ -5,6 +5,7 @@ import Gestures from './components/Gestures';
 import Drag from './components/Drag';
 import Scroll from './components/Scroll';
 import Path from './components/Path';
+import Slider from './components/Slider';
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
 
       <Container background={'linear-gradient(135deg, #005bff, #0095ff)'}>
         <Path text='Path' />
+      </Container>
+
+      <Container background={'linear-gradient(135deg, #e09, #d0e)'}>
+        <Slider text='Slider' />
       </Container>
     </Wrapper>
   );
@@ -59,6 +64,7 @@ const Container = styled.div<{ background: string }>`
   align-items: center;
   background: ${(props) => props.background};
   border-radius: 10px;
+  overflow: hidden;
 
   p {
     position: absolute;
