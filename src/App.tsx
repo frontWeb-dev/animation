@@ -6,6 +6,8 @@ import Drag from './components/Drag';
 import Scroll from './components/Scroll';
 import Path from './components/Path';
 import Slider from './components/Slider';
+import Layout from './components/Layout';
+import LayoutId from './components/LayoutId';
 
 function App() {
   return (
@@ -34,8 +36,16 @@ function App() {
         <Path text='Path' />
       </Container>
 
-      <Container background={'linear-gradient(135deg, #e09, #d0e)'}>
+      <Container background={'linear-gradient(135deg, #007bff, #00ddff)'}>
         <Slider text='Slider' />
+      </Container>
+
+      <Container background={'#00e5ff'}>
+        <Layout text='Layout' />
+      </Container>
+
+      <Container style={{ flexDirection: 'row', justifyContent: 'center' }} background={'#49f6b3'}>
+        <LayoutId text='LayoutId' />
       </Container>
     </Wrapper>
   );
@@ -46,7 +56,7 @@ export default App;
 const Wrapper = styled.div`
   max-width: 1300px;
   margin: 0 auto;
-  height: 150vh;
+  height: 200vh;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

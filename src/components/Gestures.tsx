@@ -13,7 +13,9 @@ const Gestures = ({ text }: IProps) => {
   return (
     <>
       <Box variants={vars} whileHover='hover' whileTap='click' />
-      <p>{text}</p>
+      <p>
+        {text} <span style={{ fontSize: '1rem', fontWeight: 400 }}>hover & click</span>
+      </p>
     </>
   );
 };
