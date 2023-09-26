@@ -17,22 +17,25 @@ const OverlayVars = {
   },
 };
 const SharedLayout = ({ text }: IProps) => {
-  const [clicked, setClicked] = useState(false);
-  const toggleClicked = () => setClicked((prev) => !prev);
+  const [id, setId] = useState<null | string>(null);
 
   return (
-    <Wrapper onClick={toggleClicked}>
+    <Wrapper>
       <Grid>
-        <Box layoutId='box' />
-        <Box />
-        <Box />
-        <Box />
+        {[1, 2, 3, 4].map((n) => (
+          <Box onClick={() => setId(n + '')} key={n} layoutId={n + ''} />
+        ))}
       </Grid>
 
       <AnimatePresence>
-        {clicked && (
-          <Overlay variants={OverlayVars} initial='initial' animate='visible' exit='exit'>
-            <Box layoutId='box' style={{ width: 300, height: 150 }}>
+        {id && (
+          <Overlay
+            onClick={() => setId(null)}
+            variants={OverlayVars}
+            initial='initial'
+            animate='visible'
+            exit='exit'>
+            <Box layoutId={id + ''} style={{ width: 300, height: 150 }}>
               Boom!
             </Box>
           </Overlay>
