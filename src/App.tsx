@@ -8,6 +8,7 @@ import Path from './components/Path';
 import Slider from './components/Slider';
 import Layout from './components/Layout';
 import LayoutId from './components/LayoutId';
+import SharedLayout from './components/SharedLayout';
 
 function App() {
   return (
@@ -46,6 +47,12 @@ function App() {
 
       <Container style={{ flexDirection: 'row', justifyContent: 'center' }} background={'#49f6b3'}>
         <LayoutId text='LayoutId' />
+      </Container>
+
+      <Container
+        style={{ width: 820, flexDirection: 'row', justifyContent: 'center' }}
+        background={'#00ff59'}>
+        <SharedLayout text='LayoutId' />
       </Container>
     </Wrapper>
   );
