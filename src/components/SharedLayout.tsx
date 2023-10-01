@@ -59,7 +59,7 @@ const Wrapper = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 50vw;
+  width: 70%;
   gap: 10px;
   div:first-child,
   div:last-child {
